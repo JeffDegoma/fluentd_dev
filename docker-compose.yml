@@ -1,0 +1,10 @@
+version: "3"
+services:
+  fluentd:
+    container_name: fluentd
+    user: root
+    image: fluent/fluentd:v1.11-debian
+    volumes: 
+    - /var/lib/docker/containers:/fluentd/log/containers # mount host machine docker data into fluentd container
+    - ./fluentd.conf:/fluentd/etc/fluent.conf # mount config file into container
+    - ./logs:/output/ # mounts ./logs to output folder inside fluentd container. output folder is automatically created
